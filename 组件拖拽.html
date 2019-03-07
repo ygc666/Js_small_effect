@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件拖拽</title>
+<script>
+    window.onload = function(){
+        //只有当实例去调用了init才会构成拖拽
+        var d = new Drag();
+        //配置参数
+        d.init({
+            id : '#d'
+        });
+        var d2 = new Drag();
+        d2.init({
+            id : '#d2',
+            toDown : function(){
+               document.querySelector('#d2').style.backgroundColor = 'green';
+            }
+        });
+        var d3 = new Drag();
+        d3.init({
+            id : '#d3',
+            toUp : function(){
+                document.title = 'Byebye';
+            }
+        });
+    };
+    function Drag(){
+        this.obj = null;
+        this.disY = 0;
+        this.disX = 0;
+        //默认参数
+        this.settings = {
+            toDown : function(){
+            },
+            toUp : function(){
+            }
+        };
+    };
+    Drag.prototype.init = function(opt){
+        var This = this;
+        //当没有配置init时不执行代码
+        this.obj = document.querySelector(opt.id) || function(){ return false; };
+        //把配置参数拷贝给默认参数
+        extend(this.settings,opt);
+        this.obj.onmousedown = function(ev){
+            var ev = ev || window.event;
+            This.fnDown(ev);
+            This.settings.toDown();
+            document.onmousemove = function(ev){
+                var ev = ev || window.event;
+                This.fnMove(ev);
+            };
+            document.onmouseup = function(){
+                This.fnUp();
+                This.settings.toUp();
+            };
+            return false;
+        };
+    };
+    //这个ev对象是接收的调用时传入的ev对象
+    Drag.prototype.fnDown = function(ev){
+        this.disX = ev.clientX - this.obj.offsetLeft;
+        this.disY = ev.clientY - this.obj.offsetTop;
+    }
+    Drag.prototype.fnMove = function(ev){
+        var L = ev.clientX - this.disX;
+        var T = ev.clientY - this.disY;
+        if(T < 0){
+            T = 0;
+        }else if(T > document.documentElement.clientHeight - this.obj.offsetHeight){
+            T = document.documentElement.clientHeight - this.obj.offsetHeight;
+        }
+        if(L < 0){
+            L = 0;
+        }else if(L > document.documentElement.clientWidth - this.obj.offsetWidth){
+            L = document.documentElement.clientWidth - this.obj.offsetWidth
+        }
+        this.obj.style.left = L +'px';
+        this.obj.style.top = T +'px';
+    };
+    Drag.prototype.fnUp = function(ev){
+        document.onmousemove = document.onmouseup = null;
+    }
+    //浅拷贝
+    function extend(obj1,obj2){
+        for(var attr in obj2){
+            obj1[attr] = obj2[attr];
+        }
+    }
+</script>
+</head>
+<body style="margin:0;">
+    <div id="d" style="height:100px;width:100px;background-color:yellowgreen;position:absolute;"></div>
+    <div id="d2" style="height:100px;width:100px;background-color:yellow;position:absolute;top:100px;"></div>
+    <div id="d3" style="height:100px;width:100px;background-color:orange;position:absolute;top:200px;"></div>
+</body>
+</html>

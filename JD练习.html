@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JD练习</title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;}
+		li{list-style: none;}
+		#box>li{height: 40px;border-bottom: 1px solid #ccc;}
+		#box>li>h3{margin:0 80px 0 20px;font-weight: 500;line-height: 40px;float: left;}
+		#box>li>ul li{float: left;line-height: 40px;margin-right: 30px;color: #3fb3dc;cursor: pointer;font-weight: 600;}
+		#biaoqian{margin-top: 10px;}
+		#biaoqian div{padding: 5px;border:1px solid #ccc;float: left;margin-right: 10px;}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			//找元素
+			var oBiaoqian = document.getElementById('biaoqian');
+			var oJiage = document.getElementById('jiage');
+			var aLi1 = oJiage.getElementsByTagName('li');
+			var oLeibie = document.getElementById('leibie');
+			var aLi2 = oLeibie.getElementsByTagName('li');
+			var oPinpai = document.getElementById('pinpai');
+			var aLi3 = oPinpai.getElementsByTagName('li');
+			//存点击删除的三个节点
+			var elem1 = null;
+			var elem2 = null;
+			var elem3 = null;
+			//存元素所在位置用children(index+1)来添加(在前面添加)
+			var elem1_ = 0;
+			var elem2_ = 0;
+			var elem3_ = 0;
+			//价格的click事件
+			for(var i=0;i<aLi1.length;i++){
+				aLi1[i].index = i;
+				aLi1[i].onclick = function(){
+					var h3Content = this.parentNode.previousElementSibling.innerHTML;
+					//存下元素的尺寸
+					var elem1Width = this.clientWidth;
+					if(elem1==null){
+						elem1 = this.parentNode.removeChild(this);
+						elem1_ = this.index;
+						//创建元素
+						var div = document.createElement('div');
+							//动态的修改他的宽度
+							div.style.width = elem1Width;
+							div.innerHTML = '<span style="color: #ccc;">'+h3Content+'</span><em style="color: red;">'+this.innerHTML+'</em><span style="font-weight: 600;color: red;cursor: pointer;margin-left: 10px;">×</span>';
+						oBiaoqian.appendChild(div);
+						//小 XX 的点击事件
+						//删除创建的元素
+						//在把elem1添加到原来的位置
+						//把elem1设置为null以便再次创建元素
+						div.children[2].onclick = function(){
+							oBiaoqian.removeChild(this.parentNode);
+							oJiage.insertBefore(elem1,oJiage.children[elem1_]);
+							elem1 = null;
+						}
+					}
+				}
+			}
+			//类别的click事件
+			for(var i=0;i<aLi2.length;i++){
+				aLi2[i].index = i;
+				aLi2[i].onclick = function(){
+					var h3Content = this.parentNode.previousElementSibling.innerHTML;
+					//存下元素的尺寸
+					var elem2Width = this.clientWidth;
+					if(elem2==null){
+						elem2 = this.parentNode.removeChild(this);
+						elem2_ = this.index;
+						//创建元素
+						var div = document.createElement('div');
+							//动态的修改他的宽度
+							div.style.width = elem2Width;
+							div.innerHTML = '<span style="color: #ccc;">'+h3Content+'</span><em style="color: red;">'+this.innerHTML+'</em><span style="font-weight: 600;color: red;cursor: pointer;margin-left: 10px;">×</span>';
+						oBiaoqian.appendChild(div);
+						//小 XX 的点击事件
+						//删除创建的元素
+						//在把elem1添加到原来的位置
+						//把elem1设置为null以便再次创建元素
+						div.children[2].onclick = function(){
+							oBiaoqian.removeChild(this.parentNode);
+							oLeibie.insertBefore(elem2,oLeibie.children[elem2_]);
+							elem2 = null;
+						}
+					}
+				}
+			}
+			//品牌的click事件
+			for(var i=0;i<aLi3.length;i++){
+				aLi3[i].index = i;
+				aLi3[i].onclick = function(){
+					var h3Content = this.parentNode.previousElementSibling.innerHTML;
+					//存下元素的尺寸
+					var elem3Width = this.clientWidth;
+					if(elem3==null){
+						elem3 = this.parentNode.removeChild(this);
+						elem3_ = this.index;
+						//创建元素
+						var div = document.createElement('div');
+							//动态的修改他的宽度
+							div.style.width = elem3Width;
+							div.innerHTML = '<span style="color: #ccc;">'+h3Content+'</span><em style="color: red;">'+this.innerHTML+'</em><span style="font-weight: 600;color: red;cursor: pointer;margin-left: 10px;">×</span>';
+						oBiaoqian.appendChild(div);
+						//小 XX 的点击事件
+						//删除创建的元素
+						//在把elem1添加到原来的位置
+						//把elem1设置为null以便再次创建元素
+						div.children[2].onclick = function(){
+							oBiaoqian.removeChild(this.parentNode);
+							oPinpai.insertBefore(elem3,oPinpai.children[elem3_]);
+							elem3 = null;
+						}
+					}
+				}
+			}
+			//没有排序  没有合并  懒得做~
+		}
+	</script>
+</head>
+<body>
+	<ul id="box">
+		<li>
+			<h3>价格：</h3>
+			<ul id="jiage">
+				<li>0-299</li>
+				<li>300-699</li>
+				<li>700-1099</li>
+				<li>1100-1999</li>
+				<li>2000-3599</li>
+				<li>3666-4299</li>
+			</ul>
+		</li>
+		<li>
+			<h3>类别：</h3>
+			<ul id="leibie">
+				<li>文件夹</li>
+				<li>办公套装</li>
+				<li>文件筐</li>
+				<li>美工刀</li>
+				<li>三针一钉</li>
+				<li>风琴包</li>
+				<li>票夹</li>
+			</ul>
+		</li>
+		<li>
+			<h3>品牌：</h3>
+			<ul id="pinpai">
+				<li>得力</li>
+				<li>齐星</li>
+				<li>优必利</li>
+				<li>GBC</li>
+				<li>广博</li>
+				<li>利兰</li>
+			</ul>
+		</li>
+	</ul>
+	<div id="biaoqian">
+		<!--<div><span style="color: #ccc;">类别：</span><em style="color: red;">美工刀</em><span style="font-weight: 600;color: red;cursor: pointer;margin-left: 10px;">×</span></div>
+		<div><span style="color: #ccc;">类别：</span><em style="color: red;">美工刀</em><span style="font-weight: 600;color: red;cursor: pointer;margin-left: 10px;">×</span></div>-->
+	</div>
+</body>
+</html>

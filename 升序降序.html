@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>升序降序</title>
+	<style type="text/css">
+		#box div{width: 50px;height: 50px;border:2px solid #000;margin: 10px 0;font-size: 30px;line-height: 50px;text-align: center;color: #fff;}
+	</style>
+</head>
+<body>
+	<div id="box">
+	<div style="background: red;">3</div>
+	<div style="background: yellowgreen;">2</div>
+	<div style="background: purple;">1</div>
+	<div style="background: orangered;">5</div>
+	<div style="background: pink;">4</div>
+	</div>
+	<input id="btn" type="button" value="升序" >
+</body>
+</html>
+<script type="text/javascript">
+	var box = document.getElementById('box');
+	var div = box.getElementsByTagName('div');
+	var btn = document.getElementById('btn');
+	var arr = [];
+	for(var i=0;i<div.length;i++){
+		if(div[i].innerHTML==1){
+			arr[0] = div[i];
+		}
+		if(div[i].innerHTML==2){
+			arr[1] = div[i];
+		}
+		if(div[i].innerHTML==3){
+			arr[2] = div[i];
+		}
+		if(div[i].innerHTML==4){
+			arr[3] = div[i];
+		}
+		if(div[i].innerHTML==5){
+			arr[4] = div[i];
+		}
+	}
+	btn.onclick = function(){
+		//升序
+		if(btn.getAttribute('value')=='升序'){
+			for(var i=0;i<arr.length;i++){
+				box.appendChild(arr[i]);
+			}
+			btn.setAttribute('value','降序');
+		}else{//降序
+			for(var i=0;i<arr.length;i++){
+				box.appendChild(arr[i]);
+			}
+			btn.setAttribute('value','升序');
+		}
+		arr.reverse();//点击一次颠倒一下咯
+	}
+</script>

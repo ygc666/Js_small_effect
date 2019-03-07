@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>详情提示</title>
+	<style type="text/css">
+		#box{width: 500px;height: 320px;margin:50px auto;border:5px solid #ccc;padding: 0 20px;position: relative;}
+		#box p{text-indent: 2em;line-height: 25px;}
+		#box p a{display: inline-block;}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<p id="p1">窗外雨都停了，屋里灯还黑着，数着你的冷漠，<a href="javascript:;">详情</a>把玩着寂寞。电话还没拨，已近口渴，为你熬得夜都冷了，数的羊都跑了，一个两个嘲笑我，笑我耳朵，失灵的。<a href="javascript:;">详情</a>笑我放你走了、走了、走了。路人穿街过河，好景只有片刻，森林都会凋落，风吹走云朵，你就给我的迷离扑朔，岁月风干我的执着，我还是把回忆紧握，太多都散落，<a href="javascript:;">详情</a>散落太多，好难过，难过是你走了、走了、走了、走了。过了很久终于我愿抬头看，<a href="javascript:;">详情</a>你就在对岸走得好慢，任由我独自在假寐与现实之间两难，过了很久终于我愿抬头看，你就在对岸等我勇敢，你还是我的、我的、我的、你看。浪漫无处消磨，无聊伴着生活，空荡荡的自我，莫名的焦灼，世界孤立我，任他奚落，我只保持我的沉默，<a href="javascript:;">详情</a>明白什么才是好的，坏的，都散了，散了太多无关的，散了后我醒了、醒了、醒了、醒了。</p>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	var box = document.getElementById('box');
+	var p = document.getElementById('p1');
+	var a = p.getElementsByTagName('a');
+	var data = {
+		a : '我的详情我的详情我的详情我的详情我的详情我的详情我的详情我的详情我的详情我的详情我的详情我的详情我的详情我的详情我的详情我的详情我的详情<a href="javascript:;">详情</a>',
+	}
+	//先创建元素
+	var div = document.createElement('div');
+	div.style.cssText = 'padding:10px;border:3px solid yellowgreen;background-color:orangered;position:absolute;width:250px;height:120px;text-indent:2em;display:none;';
+	div.innerHTML = data.a;
+	box.appendChild(div);
+	for(var i=0;i<a.length;i++){
+		a[i].onmouseover = function(){
+			//获取当前元素到顶部距离在加上自生高度
+			var T = this.clientHeight+this.offsetTop;
+			var L = this.offsetLeft;
+			//让div位于框内
+			//如果div的宽度加Left值大于box的宽度就让div的Left减去自己的宽度
+			//不能动态获取div的宽 自己写咯
+			div.style.display = 'block';
+			var divW_L = 250 + L;
+			var boxW = box.clientWidth;
+			var divH_T = 146 +T;
+			var boxH = box.clientHeight;
+			if(divW_L>boxW){
+				L -= 250;
+			}
+			if(divH_T>boxH){
+				T = T-146-this.clientHeight-this.clientHeight;
+			}
+			console.log(divH_T);
+			console.log(boxH);
+			div.style.top = T + 'px';
+			div.style.left = L + 'px';
+		}
+		a[i].onmouseout = function(){
+			div.style.display = 'none';
+		}
+	}
+	
+</script>

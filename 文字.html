@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Titile</title>
+    <style>
+        #inp{
+            outline:none;
+            display: inline-block;
+            width: 300px;
+            height: 40px;
+            border: 1px solid cornflowerblue;
+            padding-left: 10px;
+            font-size: 22px;
+        }
+        #inp2,#inp3{
+            border: none;
+            outline:none;
+            display: block;
+            width: 60px;
+            height: 40px;
+            text-decoration: none;
+            line-height: 40px;
+            text-align: center;
+            background-color: cornflowerblue;
+            color: #fff;
+            margin-top: 1px;
+            margin-left: 252px;
+            cursor: pointer;
+        }
+        #centent{
+            margin-top: 1px;
+            width: 100%;
+            height: 60px;
+            background-color: cornflowerblue;
+            line-height: 60px;
+            padding-left: 20px;
+            font-family: 'Poiret One';
+            font-weight: 100;
+            font-size: 22px;
+            
+        }
+        #centent:before {
+        content: "$ ";
+        }
+        #centent:after {
+        content: "";
+        display: inline-block;
+        height: 24px;
+        width: 4px;
+        margin-left: -2px;
+        background-color: currentcolor;
+        animation: cursor 1s infinite; }
+        @keyframes cursor {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 1;
+            }
+            51% {
+                opacity: 0;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <input id="inp" type="text"></input>
+    <input id="inp2" type="button" value="确定"></input>
+    <div id="centent">
+        <span id="text"></span>
+    </div>
+    <input id="inp3" type="button" value="删除"></input>
+    <script>
+        var inp = document.querySelector('#inp');
+        var inp2 = document.querySelector('#inp2');
+        var inp3 = document.querySelector('#inp3');
+        var span = document.querySelector('#text');
+        
+        inp2.onclick = function(){
+            let aText = [];
+            let value = inp.value;
+            inp.value = '';
+            aText = value.split('');
+            //console.log(aText);
+            let num = 0;
+            if(aText.length!=0){
+                let timer = setInterval(function(){
+                span.innerHTML += aText[num];
+                if(num<aText.length-1){
+                    num++;
+                    console.log(span.innerHTML);
+                }else{
+                    clearInterval(timer);
+                }
+                },300);
+            }
+        }
+        inp3.onclick = function(){
+            if(span.innerHTML!=0){
+                let timer = setInterval(function(){
+                    if(span.innerHTML!=0){
+                        var value = span.innerHTML;
+                        console.log(value);
+                        span.innerHTML = value.substring(0,value.length-1);    
+                    }else{
+                        clearInterval(timer);
+                    }
+                },300);
+            }else{
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

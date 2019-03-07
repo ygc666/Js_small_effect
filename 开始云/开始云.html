@@ -1,0 +1,630 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>开始云</title>
+	<style>
+		*{margin: 0;padding: 0;}
+		ul{list-style: none;}
+		body,html{width: 100%;}
+		#body{;margin: 0 auto 0;min-width:1280px;}
+		/*@media screen and(min-width:1280px;){}还不会这个*/
+		a{text-decoration: none;}
+		/* header */
+		header{
+			height: 68px;
+			width: 100%;
+			/*background-image: url(img/logo.png);
+			background-repeat: no-repeat;
+			background-position: 123px 18px;*/
+			/*复合一下样式*/
+			background: url(img/logo.png) no-repeat 123px 18px;
+			overflow: hidden;/*解决边距塌陷*/
+		}
+		nav{
+			width: 400px;
+			margin:32px 0 0 360px;
+			/*CSS3弹性盒子*/
+			display: inline-flex;
+			justify-content: space-between;/*两端对齐富裕空间平均分配*/
+		}
+		nav>a{
+			font-size: 14px;
+			color: #333;
+		}
+		header>span{
+			display: inline-block;
+			font-size: 12px;
+			margin:0 22px 0 48px;
+		}
+		header>a:nth-of-type(1),header>a:nth-of-type(2){
+			display: inline-block;
+			width: 94px;
+			height: 29px;
+			border: 1px solid #00a0e9;
+			border-radius: 3px;
+			vertical-align: middle;
+			background: #fff;
+			font-size: 14px;
+			color: #76caec;
+			text-align: center;
+			line-height: 29px;
+		}
+		header>a:nth-of-type(1){
+			 margin-right: 12px;
+		}
+		header>a:nth-of-type(2){
+			margin-right: 18px;
+		}
+		header>a:nth-of-type(3){
+			font-size: 12px;
+			color: #333;
+		}
+		header>a:nth-of-type(1):hover{
+			background: #25a9e1;
+			color: #eff9fd;
+		}
+		header>a:nth-of-type(2):hover{
+			background: #25a9e1;
+			color: #eff9fd;
+		}
+		/* end header */
+		/* home */
+		#home{
+			text-align: center;
+			font-family: 黑体;
+			height: 896px;
+			overflow: hidden;
+			background: url(img/homebg1.png) no-repeat 138px 0,url(img/homebg3.png) no-repeat 70px 456px,url(img/homebg2.png) no-repeat bottom;/*写在前面的图层在上*/
+		}
+		#home>h1{
+			font-size: 48px;
+			margin: 168px 0 50px 0;
+		}
+		#home>p{
+			font-size: 32px;
+		}
+		/* end home */
+		/* chanpin */
+		#chanpin{
+			height: 836px;
+			background: #e3ecf2;
+			text-align: center;
+			color: #6bc2e6;
+			overflow: hidden;
+		}
+		#chanpin>h2{
+			font-size: 48px;
+			font-weight: normal;
+			margin: 100px 0 66px 0;
+		}
+		#chanpin>p{
+			font-size: 18px;
+		}
+		#chanpin>section{
+			width: 1126px;
+			height: 326px;
+			margin: 104px auto 0;
+			display: flex;
+			justify-content: space-between;
+		}
+		#chanpin .chanpinDiv{
+			width: 196px;
+			height: inherit;
+			background: #fefefe;
+			border-radius: 15px;
+			text-align: center;
+			cursor: pointer;
+			-webkit-transition: .5s;
+			-moz-transition: .5s;
+			-o-transition: .5s;
+			transition: .5s;
+		}
+		#chanpin .chanpinDiv:hover{
+			box-shadow: 5px 10px 15px #ccc;
+		}
+		.chanpinDiv>img{
+			margin: 14px 0 14px 0;
+		}
+		.chanpinDiv>span{
+			display: block;
+			width: inherit;
+			height: 1px;
+			background: #d1d3d3;
+		}
+		.chanpinDiv>h4{
+			font-size: 24px;
+			margin-top: 36px;
+		}
+		.chanpinDiv>p{
+			margin-top: 20px;
+			font-size: 14px;
+			color: #999999;
+		}
+		/* end chanpin */
+		/* geju */
+		#geju{
+			height: 1010px;
+			background: #fff;
+			text-align: center;
+			overflow: hidden;
+		}
+		#geju>h2{
+			font-size: 48px;
+			color: #666;
+			font-weight: normal;
+			margin: 110px 0 56px 0;
+		}
+		#geju>p{
+			font-size: 24px;
+			color: #666;
+		}
+		#geju>.gejuDiv{
+			height: 670px;
+			margin-top: 79px;
+			position: relative;
+		}
+		/*全局绝对定位，top合并了；1，2，3，4和9，10，11，12是一样的所以合并了*/
+		.gejuDiv>img{
+			position: absolute;
+			cursor: pointer;
+			-webkit-transition: .5s;
+			-moz-transition: .5s;
+			-o-transition: .5s;
+			transition: .5s;
+		}
+		.gejuDiv>img:hover{
+			z-index: 999;
+			-webkit-transform: rotate(360deg);
+			-moz-transform: rotate(360deg);
+			-o-transform: rotate(360deg);
+			transform: rotate(360deg);
+		}
+		.gejuDiv>img:nth-child(1),
+		.gejuDiv>img:nth-child(2),
+		.gejuDiv>img:nth-child(3),
+		.gejuDiv>img:nth-child(4){
+			top: 0;
+		}
+		.gejuDiv>img:nth-child(5),
+		.gejuDiv>img:nth-child(6),
+		.gejuDiv>img:nth-child(7),
+		.gejuDiv>img:nth-child(8){
+			top: 164px;
+		}
+		.gejuDiv>img:nth-child(9),
+		.gejuDiv>img:nth-child(10),
+		.gejuDiv>img:nth-child(11),
+		.gejuDiv>img:nth-child(12){
+			top: 324px;
+		}
+		.gejuDiv>img:nth-child(1),
+		.gejuDiv>img:nth-child(9){
+			left: 40px;
+		}
+		.gejuDiv>img:nth-child(2),
+		.gejuDiv>img:nth-child(10){
+			left: 320px;
+		}
+		.gejuDiv>img:nth-child(3),
+		.gejuDiv>img:nth-child(11){
+			left: 590px;
+		}
+		.gejuDiv>img:nth-child(4),
+		.gejuDiv>img:nth-child(12){
+			left: 860px;
+		}
+		.gejuDiv>img:nth-child(5){
+			left: 172px;
+		}
+		.gejuDiv>img:nth-child(6){
+			left: 452px;
+		}
+		.gejuDiv>img:nth-child(7){
+			left: 724px;
+		}
+		.gejuDiv>img:nth-child(8){
+			left: 998px;
+		}
+		/* end geju */
+		/* imgTab */
+		#imgTab{
+			text-align: center;
+			height: 600px;
+			width: 100%;
+			position: relative;
+		}
+		#imgBox{
+			text-align: center;
+			position: relative;
+			width: 100%;
+			height: 600px;
+			margin: auto;
+		}
+		#imgBox>a{
+			display: block;
+			width: 50px;
+			height: 600px;
+			line-height: 600px;
+			font-size: 32px;
+			background: #fff;
+			color: #000;
+			text-decoration: none;
+			position: absolute;
+			opacity: .2;
+			transition: 1s;
+		}
+		#imgBox>a:hover{
+			background: linear-gradient(pink,orange);
+			opacity: .8;
+		}
+		#imgBox>a:nth-of-type(1){
+			top: 0;
+			left: 0;
+		}
+		#imgBox>a:nth-of-type(2){
+			top: 0;
+			right: 0;
+		}
+		#imgBox>img{
+			border: none;
+			width: 100%;
+			height: 600px;
+		}
+		#imgTab>ul{
+			display: flex;
+			justify-content: center;
+			margin-top: -50px;
+		}
+		#imgTab>ul>li{
+			display: block;
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			background: #f1f1f1;
+			margin-left: 50px;
+			position: relative;
+			opacity: .6;
+		}
+		#imgTab>ul>li:hover{
+			opacity: 1;
+			transform: scale(1.2);
+		}
+		#imgTab .active{
+			background: #45A0E1;
+		}
+		#imgTab>ul img{
+			width: 100px;
+			height: 60px;
+			position: absolute;
+			border: 3px solid #fff;
+			top: -80px;
+			left: -45px;
+			opacity: .8;
+			display: none;
+		}
+		/* end imgTab*/
+		/* jiangxin */
+		#jiangxin{
+			height: 894px;
+			background: #94bade;
+			text-align: center;
+			overflow: hidden;
+		}
+		#jiangxin>h2{
+			font-size: 48px;
+			font-weight: normal;
+			color: #fff;
+			margin: 118px 0 50px 0;
+		}
+		#jiangxin>p{
+			font-size: 24px;
+			color: #fff;
+			margin-bottom: ;
+		}
+		#jiangxinDiv1{
+			height: 344px;
+			width: 1174px;
+			margin:98px auto 0;
+		}
+		/*用两个div来控制justify-content*/
+		#jiangxinDiv1>.div1{
+			display: flex;
+			justify-content: space-between;
+			margin-bottom: 38px;
+		}
+		#jiangxinDiv1>.div2{
+			display: flex;
+			justify-content: space-between;
+		}
+		#jiangxinDiv1 img{
+			cursor: pointer;
+		}
+		#jiangxinDiv1 img:hover{
+			-webkit-transform: scale(1.1);
+			-moz-transform: scale(1.1);
+			-o-transform: scale(1.1);
+			transform: scale(1.1);
+		}
+		#jiangxin>a{
+			margin-top: 80px;
+			display: inline-block;
+			width: 20px;
+			height: 20px;
+			background: #fff;
+			border-radius: 50%;
+		}
+		#jiangxin .active{
+			background: gray;
+		}
+		/*----------------------控制分页---------------------------*/
+		#jiangxinDiv2{
+			height: 344px;
+			width: 1174px;
+			margin:98px auto 0;
+			display: none;
+		}
+		#jiangxinDiv2>.div1{
+			display: flex;
+			justify-content: space-between;
+			margin-bottom: 38px;
+		}
+		#jiangxinDiv2>.div2{
+			display: flex;
+			justify-content: space-between;
+		}
+		#jiangxinDiv2 img{
+			cursor: pointer;
+		}
+		#jiangxinDiv2 img:hover{
+			-webkit-transform: scale(1.1);
+			-moz-transform: scale(1.1);
+			-o-transform: scale(1.1);
+			transform: scale(1.1);
+		}
+		/* end jiangxin */
+	</style>
+	<script>
+	window.onload = function(){
+		/*jiangxinTab*/
+		var btn1 = document.getElementById('jiangxinTab1');
+		var btn2 = document.getElementById('jiangxinTab2');
+		var jiangxinDiv1 = document.getElementById('jiangxinDiv1');
+		var jiangxinDiv2 = document.getElementById('jiangxinDiv2');
+		var that = null;/*用来存下面的this*/
+		function jiangxinTab(){
+			btn1.className = '';
+			btn2.className = '';
+			that.className = 'active';
+		}
+		btn1.onclick = function(){
+			that = this;
+			jiangxinTab();
+			jiangxinDiv2.style.display = 'none';
+			jiangxinDiv1.style.display = 'block';
+		}
+		btn2.onclick = function(){
+			that = this;
+			jiangxinTab();
+			jiangxinDiv2.style.display = 'block';
+			jiangxinDiv1.style.display = 'none';
+		}
+		
+		/*ImgTab的JS*/
+		var oImgBox = document.getElementById('imgBox');
+		var oImg = document.getElementById('img1');
+		var oUl = document.getElementById('list');
+		var aShang = oImgBox.getElementsByTagName('a')[0];
+		var aXia = oImgBox.getElementsByTagName('a')[1];
+		var aLi = oUl.getElementsByTagName('li');
+		var arrayImg = ['imgTab/1.jpg','imgTab/2.jpg','imgTab/3.jpg','imgTab/4.jpg'];
+		var num = 0;
+		var aImg = null;
+		var arrImg = [];
+		var timer = null;
+		//找元素
+		for(var i=0;i<aLi.length;i++){
+			aImg = aLi[i].getElementsByTagName('img');
+			for(var j=0;j<aImg.length;j++){
+				arrImg.push(aImg[j]);
+			}
+		}
+		/*缩略图*/
+		for(var i=0;i<aLi.length;i++){
+			aLi[i].index = i;
+			aLi[i].onmouseover = function(){
+				arrImg[this.index].style.display = 'block';
+			}
+			aLi[i].onmouseout = function(){
+				arrImg[this.index].style.display = 'none';
+			}
+		}
+		/*imgTab*/
+		//初始化
+		oImg.src = arrayImg[num];
+		aLi[num].className = 'active';
+		for(var i=0;i<aLi.length;i++){
+			aLi[i].onclick = function(){
+				num = this.index;
+				imgTab();
+			}
+		}
+		/*上下点击切换*/
+		/*轮播*/
+		function interval(){
+			timer = setInterval(function(){
+			num++;
+			num%=arrayImg.length;
+			imgTab();
+		},1000);
+		}
+		interval();
+		oImgBox.onmouseover = function(){
+			clearInterval( timer );
+		}
+		oUl.onmouseover = function(){
+			clearInterval( timer );
+		}
+		oImgBox.onmouseout = function(){
+			interval();
+		}
+		/*函数合并*/
+		function imgTab(){
+			oImg.src = arrayImg[num];
+			for(var i=0;i<aLi.length;i++){
+				aLi[i].className = '';
+			}
+			aLi[num].className = 'active';
+		}
+		aShang.onclick = function(){
+			if(num==0){
+				num = arrayImg.length;
+			}
+			num--;
+			imgTab();
+		}
+		aXia.onclick = function(){
+			if(num==arrayImg.length-1){
+				num = -1;
+			}
+			num++;
+			imgTab();
+		}
+		
+	}
+	</script>
+</head>
+<body>
+<section id="body">
+	<header>
+		<nav>
+			<a href="#" title="首页">首页</a>
+			<a href="#" title="产品">产品</a>
+			<a href="#" title="方案">方案</a>
+			<a href="#" title="案例">案列</a>
+			<a href="#" title="渠道">渠道</a>
+			<a href="#" title="关于">关于</a>
+		</nav>
+		<span>400-889-1088</span>
+		<a href="#">在线试用</a>
+		<a href="#">免费下载</a>
+		<a href="#" title="English">English</a>
+	</header>
+	<section id="home">
+		<h1>十年磨一剑，开始新征程</h1>
+		<p>重新定义企业文件使用方式</p>
+	</section>
+	<section id="chanpin">
+		<h2>产品，才是真王道</h2>
+		<p>开始云，成立于2006年，国内首家专业的企业内容管理云端解决方案提供商。一直以来，开始云始终秉承着“开启知识传承，始于文件管理”<br>的核心产品理念，打造了开始智能云盘、KASS企业内容管理系统、KFS私有云存储系统、开始文件盒子等多个核心产品。</p>
+		<section>
+			<div class="chanpinDiv">
+				<img src="img/chanpinDiv.png"/>
+				<span><!--线--></span>
+				<h4>KASS</h4>
+				<p>KASS企业内容管理系统<br>为企业提供最专业最全<br>面的内容管理解决方案</p>
+			</div>
+			<div class="chanpinDiv">
+				<img src="img/chanpinDiv1.png"/>
+				<span><!--线--></span>
+				<h4>KFS</h4>
+				<p>KFS私有云存储系统是具<br>有EB级高性能的分布式<br>私有云储存</p>
+			</div>
+			<div class="chanpinDiv">
+				<img src="img/chanpinDiv2.png"/>
+				<span><!--线--></span>
+				<h4>SAAS</h4>
+				<p>开始智能云盘专注文件<br>文件智能使用，做最聪<br>明的企业云盘</p>
+			</div>
+			<div class="chanpinDiv">
+				<img src="img/chanpinDiv3.png"/>
+				<span><!--线--></span>
+				<h4>KASS FILEBOX</h4>
+				<p>开始文件盒子为中小型<br>企业提供最具性价比的<br>文件管理神器</p>
+			</div>
+		</section>
+	</section>
+	<section id="geju">
+		<h2>格局，引领未来</h2>
+		<p>十年孜孜已倦，开始云着力全方位覆盖全行业</p>
+		<div class="gejuDiv">
+			<img src="img/geju/政府.png" alt="政府机构">
+			<img src="img/geju/金融.png" alt="金融行业">
+			<img src="img/geju/能源.png" alt="能源化工">
+			<img src="img/geju/教育.png" alt="教育行业">
+			<img src="img/geju/广告.png" alt="广告媒体">
+			<img src="img/geju/医疗.png" alt="医疗健康">
+			<img src="img/geju/运输.png" alt="运输物流">
+			<img src="img/geju/工程.png" alt="工程建筑">
+			<img src="img/geju/制造.png" alt="制造行业">
+			<img src="img/geju/规划.png" alt="规划设计">
+			<img src="img/geju/科技.png" alt="科技行业">
+			<img src="img/geju/管理.png" alt="管理咨询">
+		</div>
+	</section>
+	<section id="jiangxin">
+		<h2>匠心，让我们精益求精</h2>
+		<p>十年不懈努力，开始云覆盖5万多假大中小企业、超3百万终端用户</p>
+		<div id="jiangxinDiv1">
+			<div class="div1">
+				<img src="img/jiangxin/1.png" />
+				<img src="img/jiangxin/2.png" />
+				<img src="img/jiangxin/3.png" />
+				<img src="img/jiangxin/4.png" />
+				<img src="img/jiangxin/5.png" />
+			<img src="img/jiangxin/6.png" />
+			</div>
+			<div class="div2">
+				<img src="img/jiangxin/7.png" />
+				<img src="img/jiangxin/8.png" />
+				<img src="img/jiangxin/9.png" />
+				<img src="img/jiangxin/10.png" />
+				<img src="img/jiangxin/11.png" />
+				<img src="img/jiangxin/12.png" />
+			</div>	
+		</div>
+		<div id="jiangxinDiv2">
+			<div class="div1">
+				<img src="img/jiangxin/1.png" />
+				<img src="img/jiangxin/1.png" />
+				<img src="img/jiangxin/1.png" />
+				<img src="img/jiangxin/1.png" />
+				<img src="img/jiangxin/1.png" />
+				<img src="img/jiangxin/1.png" />
+			</div>
+			<div class="div2">
+				<img src="img/jiangxin/1.png" />
+				<img src="img/jiangxin/1.png" />
+				<img src="img/jiangxin/1.png" />
+				<img src="img/jiangxin/1.png" />
+				<img src="img/jiangxin/1.png" />
+				<img src="img/jiangxin/1.png" />
+			</div>	
+		</div>
+		<a id="jiangxinTab1" href="javascript:;" class="active"></a>
+		<a id="jiangxinTab2" href="javascript:;"></a>
+	</section>
+	<section id="imgTab">
+		<div id="imgBox">
+			<img id="img1" />
+			<a href="javascript:;">&lt;</a>
+			<a href="javascript:;">&gt;</a>
+		</div>
+		<ul id="list">
+			<li>
+				<img src="imgTab/1.jpg" />
+			</li>
+			<li>
+				<img src="imgTab/2.jpg" />
+			</li>
+			<li>
+				<img src="imgTab/3.jpg" />
+			</li>
+			<li>
+				<img src="imgTab/4.jpg" />
+			</li>
+	</ul>
+	</section>
+</section>
+</body>
+</html>

@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>美发店</title>
+	<style type="text/css">
+		/*reset*/
+		*{padding: 0;margin: 0;}
+		li{list-style: none;}
+		a{text-decoration: none;}
+		body{font-size: 14px;font-family: 宋体; width: 1348px;min-width: 1348px;margin: auto;}
+		img{vertical-align: top;}
+		/*end reset*/
+		/*header*/
+		header{width: 1348px;height: 68px;position: fixed; z-index: 999;}
+		header nav{width: 180px;height: 55px;display: flex;justify-content: space-between;align-items: center;position: absolute;left: 900px;top: 10px;}
+		header nav>span{display:block;width: 60px;height: 50px;text-align: center; line-height: 50px;background: url(img/head/quan.png) 0px 0px; background-repeat: no-repeat;}
+		header>a{display: block; width: 215px;height: 48px;color: #000; border:1px solid #000;border-right: none;float: right;margin-top: 10px;line-height: 48px;font-size: 14px;font-weight: 700; text-indent: 2em;position: relative;overflow: hidden;}
+		header>a::before{content: "";display: block; width: 215px;height: 48px;background: #000; transform:translateX(-122%) skewX(63deg); position: absolute;transition: .4s;z-index: -1;}
+		header>a:hover{color: #fff;}
+		header>a:hover::before{transform: translateX(0%);}
+		/*end header*/
+		/*logo*/
+		#logoBox{width: 100%;height: 768px;;background: url(img/head/jiandao.png) center,url(img/head/handbag.png) 150px 100px,-webkit-linear-gradient(left,#e6e7ec,#f0f3f8,#e1e9ec);background-repeat: no-repeat;position: relative;border-top: 1px solid transparent;margin-top: -1px;}
+		#logoBox h1{font-size: 56px;font-weight: 100;position: absolute;left: 190px;top: 230px;transform: rotate(-10deg);margin-bottom: 10px;border-bottom:3px solid;}
+		/*scroll*/
+		#logoBox>div{width:2px;height: 0px;background: gray;margin:600px auto;animation: jiazaizhong 1s infinite;position: relative;}
+		#logoBox>div:after{content: 'scrllo';position: absolute;top: -20px;}
+		#logoBox>div>div{height: 2px;width:15px;background:gray;position: absolute;}
+		#logoBox>div>div:nth-of-type(1){left: 0px;animation: 1s infinite jiantouL;}
+		#logoBox>div>div:nth-of-type(2){right: 0px;animation: 1s infinite jiantouR;}
+		@keyframes jiazaizhong{
+			from{height: 0px;}
+			to{height: 50px;}
+		}
+		@keyframes jiantouL{
+			from{transform: rotate(0deg);bottom: 0px;left: 0px;}
+			to{transform: rotate(-45deg);bottom: 5px;left: -1px;}
+		}
+		@keyframes jiantouR{
+			from{transform: rotate(0deg);bottom: 0px;right: 0px;}
+			to{transform: rotate(45deg);bottom: 5px;right: -1px;}
+		}
+		/*end scroll*/
+		/*end logo*/
+		/*imgTabBox*/
+		#imgTabBox{width: 100%;background: #fff;}
+		/*imgTab1*/
+		#imgTab1{height: 745px;position: relative;border-top: 1px solid transparent;margin-top: -1px;}
+		#imgTab1>h1{font-size: 120px;font-weight: 100;letter-spacing: 40px;margin-top: 100px;margin-left: 400px;color: #ccc;}
+		#imgTab1>p:nth-of-type(1){font-size: 50px;letter-spacing: 8px;transform: rotate(90deg);position: absolute;top: 200px;left: -100px;}
+		#imgTab1>p:nth-of-type(2){font-size: 18px;position: absolute;top: 520px;left: 100px;}
+		#imgTab1>div{width: 776px;height: 436px;margin-left: 450px;display: flex;}
+		#imgTab1>div>.jieshao{width: 126px;height: 436px;}
+		#imgTab1>div>.jieshao>h2{ font-size: 30px;padding: 14px 0;border: 2px solid #000;border-left: none;border-right: none;width: 90px;margin-bottom: 20px;}
+		#imgTab1>div>.jieshao>p{font-weight: 700;}
+		#imgTab1>div>.img1{width:650px;height: 436px;position: relative;}
+		#imgTab1>div>.img1>img{border-bottom: 3px solid #ccc;}
+		#imgTab1Ul{position: absolute;left: -70px;top: 300px;transform: rotate(180deg);}
+		#imgTab1Ul li{height: 3px;background: #000;margin-bottom: 25px;}
+		#imgTab1Ul li:nth-child(1){width: 70px;}
+		#imgTab1Ul li:nth-child(2){width: 80px;}
+		#imgTab1Ul li:nth-child(3){width: 90px;}
+		#imgTab1Ul li:nth-child(4){width: 70px;}
+		#imgTab1Ul .active{background: red;}
+		/* end imgTab1*/
+		/*imgTab2 传参的形式*/
+		#imgTab2{width: 100%;height: 1444px;position: relative;}
+		/*那四个图片 我四真的不想做了的*/
+		#imgTab2>img{position: absolute;z-index: 2;}
+		#imgTab2>img:nth-child(1){top: -180px;left: 1000px;}
+		#imgTab2>img:nth-child(2){top:180px;left:760px;}
+		#imgTab2>img:nth-child(3){top:380px;left:1060px;}
+		#imgTab2>img:nth-child(4){top:1080px;left:800px;}
+		/*end 那4张图片*/
+		/*imgTab2Box 公共的*/
+		#imgTab2>.imgTab2Box1,#imgTab2>.imgTab2Box2,#imgTab2>.imgTab2Box3{width: 776px;height: 436px;display: flex;}
+		#imgTab2>.imgTab2Box1>div:nth-child(1),
+		#imgTab2>.imgTab2Box2>div:nth-child(1),
+		#imgTab2>.imgTab2Box3>div:nth-child(1)
+		{width: 126px;height: 436px; }
+		#imgTab2>.imgTab2Box1>div:nth-child(1)>h3,
+		#imgTab2>.imgTab2Box2>div:nth-child(1)>h3,
+		#imgTab2>.imgTab2Box3>div:nth-child(1)>h3
+		{ font-size: 30px;padding: 14px 0;border: 2px solid #000;border-left: none;border-right: none;width: 90px;margin-bottom: 20px;}
+		#imgTab2>.imgTab2Box1>div:nth-child(1)>p,
+		#imgTab2>.imgTab2Box2>div:nth-child(1)>p,
+		#imgTab2>.imgTab2Box3>div:nth-child(1)>p
+		{font-weight: 700;}
+		#imgTab2>.imgTab2Box1>div:nth-child(1)>span,
+		#imgTab2>.imgTab2Box2>div:nth-child(1)>span,
+		#imgTab2>.imgTab2Box3>div:nth-child(1)>span
+		{display: block;margin-top: 260px;margin-left: 36px; font-weight: 700;font-size: 14px;}
+		#imgTab2Box1_div2,
+		#imgTab2Box2_div2,
+		#imgTab2Box3_div2
+		{width:650px;height: 436px; position: relative;overflow: hidden;}
+		#imgTab2ImgBox1,
+		#imgTab2ImgBox2,
+		#imgTab2ImgBox3
+		{position: absolute;}
+		#imgTab2ImgBox1 img,
+		#imgTab2ImgBox2 img,
+		#imgTab2ImgBox3 img
+		{border-bottom: 3px solid #ccc;}
+		#imgTab2Box1_div2 ul,
+		#imgTab2Box2_div2 ul,
+		#imgTab2Box3_div2 ul
+		{position: absolute;top: 280px;left: 10px;}
+		#imgTab2Box1_div2 ul li,
+		#imgTab2Box2_div2 ul li,
+		#imgTab2Box3_div2 ul li
+		{width:4px;height: 25px;background: rgba(255,255,255,0.8);margin-bottom: 15px;}
+		#imgTab2Box1_div2 ul .xuanzhong,
+		#imgTab2Box2_div2 ul .xuanzhong,
+		#imgTab2Box3_div2 ul .xuanzhong
+		{background: rgba(255,0,4,1);}
+		/*单独的*/
+		#imgTab2>.imgTab2Box1{margin-left: 100px;}
+		#imgTab2>.imgTab2Box2{margin-left: 430px;margin-top: 50px;}
+		#imgTab2>.imgTab2Box3{margin-left: 100px;margin-top: 50px;}
+		/*end 单独的*/
+		/*end imgTab2Box*/
+		/*end imgTab2*/
+		/*end imgTabBox*/
+		/*jpns*/
+		#jpns{ height: 1200px;position: relative;border:1px solid rgba(255,255,255,0);margin-top: -1px;display: flex;justify-content: center;align-items: center;background: #fff;}
+		#jpns h3{font-size: 60px;font-weight: 100;transform: rotate(90deg);position: absolute;left: 1000px;top: 50px;z-index: 2;}
+		#jpns section{width: 1100px;height: 920px;}
+		#jpns section>div{width: 300px;height: 354px;background: #fff;margin:30px;position: relative;float: left;}
+		#jpnsDiv1>.one,
+		#jpnsDiv2>.one,
+		#jpnsDiv3>.one,
+		#jpnsDiv4>.one,
+		#jpnsDiv5>.one,
+		#jpnsDiv6>.one
+		{width: 150px;height: 70px;background: #fff;position: absolute;bottom: 0;left: 0;z-index: 2;}
+		#jpnsDiv1>.one>p:nth-of-type(1),
+		#jpnsDiv2>.one>p:nth-of-type(1),
+		#jpnsDiv3>.one>p:nth-of-type(1),
+		#jpnsDiv4>.one>p:nth-of-type(1),
+		#jpnsDiv5>.one>p:nth-of-type(1),
+		#jpnsDiv6>.one>p:nth-of-type(1)
+		{font-size: 32px;margin-left: 2px;}
+		#jpnsDiv1>.one>p:nth-of-type(2),
+		#jpnsDiv2>.one>p:nth-of-type(2),
+		#jpnsDiv3>.one>p:nth-of-type(2),
+		#jpnsDiv4>.one>p:nth-of-type(2),
+		#jpnsDiv5>.one>p:nth-of-type(2),
+		#jpnsDiv6>.one>p:nth-of-type(2)
+		{font-size: 16px;margin-left: 100px;}
+		#jpnsDiv1>.one>span,
+		#jpnsDiv2>.one>span,
+		#jpnsDiv3>.one>span,
+		#jpnsDiv4>.one>span,
+		#jpnsDiv5>.one>span,
+		#jpnsDiv6>.one>span
+		{display: block; width: 100px;height: 1px;background: #ccc;transform: rotate(-30deg);margin-left: 10px;margin-top: -5px;}
+		#jpnsDiv1>.one>img,
+		#jpnsDiv2>.one>img,
+		#jpnsDiv3>.one>img,
+		#jpnsDiv4>.one>img,
+		#jpnsDiv5>.one>img,
+		#jpnsDiv6>.one>img
+		{margin-left: 138px;margin-top: -80px;opacity: 0;transition: .6s;}
+		#jpnsDiv1>.two,
+		#jpnsDiv2>.two,
+		#jpnsDiv3>.two,
+		#jpnsDiv4>.two,
+		#jpnsDiv5>.two,
+		#jpnsDiv6>.two
+		{width: 300px;height: 354px;overflow: hidden;position: relative;}
+		#jpnsDiv1>.two>div,
+		#jpnsDiv2>.two>div,
+		#jpnsDiv3>.two>div,
+		#jpnsDiv4>.two>div,
+		#jpnsDiv5>.two>div,
+		#jpnsDiv6>.two>div
+		{width: 100%;height:120px;background: #fff;position: absolute;bottom: -66px;transition: .6s;}
+		#jpnsDiv1>.two>div>p,
+		#jpnsDiv2>.two>div>p,
+		#jpnsDiv3>.two>div>p,
+		#jpnsDiv4>.two>div>p,
+		#jpnsDiv5>.two>div>p,
+		#jpnsDiv6>.two>div>p
+		{margin-top: 55px;font-size: 14px;color: #6A6A6A;letter-spacing: 4px;margin-left: 10px;}
+		#jpnsDiv1:hover .one>img,
+		#jpnsDiv2:hover .one>img,
+		#jpnsDiv3:hover .one>img,
+		#jpnsDiv4:hover .one>img,
+		#jpnsDiv5:hover .one>img,
+		#jpnsDiv6:hover .one>img
+		{opacity: 1;transform: rotateY(360deg);}
+		#jpnsDiv1:hover .two>div,
+		#jpnsDiv2:hover .two>div,
+		#jpnsDiv3:hover .two>div,
+		#jpnsDiv4:hover .two>div,
+		#jpnsDiv5:hover .two>div,
+		#jpnsDiv6:hover .two>div
+		{bottom: 50px;}
+		#jpnsDiv1:hover .two>div p,
+		#jpnsDiv2:hover .two>div p,
+		#jpnsDiv3:hover .two>div p,
+		#jpnsDiv4:hover .two>div p,
+		#jpnsDiv5:hover .two>div p,
+		#jpnsDiv6:hover .two>div p
+		{margin-top: 15px;}
+		/*end jpns*/
+		/*concept*/
+		#concept{height: 524px;background: #f3f8fb;display: flex;}
+		#concept>img{position: absolute;top:3020px;left: 110px;}/*这个是jpns哪个图片*/
+		#concept .one{height: 524px;width: 674px;position: relative;overflow: hidden;}
+		#concept .one>div{width: 337px;height: 262px;background: ora-nge;position: absolute;z-index: 2;}
+		#concept .one>div:nth-of-type(1){top: 0;left: 0;}
+		#concept .one>div:nth-of-type(2){top: 0;left: 337px;}
+		#concept .one>div:nth-of-type(3){top: 262px;left: 0;}
+		#concept .one>div:nth-of-type(4){top: 262px;left: 337px;}
+		#concept .one img{position: absolute;top: -300px;left: -500px;transition: 2s;}
+		#concept .two{height: 524px;width: 644px;padding-left: 30px;position: relative;z-index: 1;}
+		#concept .two img{position: absolute;top: -100px;left: 400px;}
+		#concept .two h4{font-weight:400;font-size: 46px;margin: 30px 0;}
+		#concept .two p:nth-of-type(1){font-size: 14px;margin-bottom: 80px;}
+		#concept .two p:nth-of-type(2){font-size: 14px;letter-spacing: 10px;}
+		#concept .two>span{display: block;width: 420px;height: 1px;background: #ccc;margin-top: 60px;}
+		#concept .two>a{font-size: 12px;font-weight: 600;padding-left: 24px;color: #000; display: flex;width:476px;height: 44px;border-left: 1px solid #ccc;border-bottom: 1px solid #ccc;align-items: center;position: relative;overflow: hidden;letter-spacing: 2px;}
+		#concept .two>a::before{content: "";display: block; width: 500px;height: 44px;background: #000; transform:translateX(-122%) skewX(63deg); position: absolute;transition: .4s;z-index: -1;}
+		#concept .two>a:hover {color: #fff;border: none;}
+		#concept .two>a:hover span{background: #fff;width: 90px;transition: .7s;}
+		#concept .two>a:hover span::before{color: #fff;}
+		#concept .two>a:hover::before{transform: translateX(-24px);}
+		#concept .two>a span{display: block;height: 1px;width: 70px;background: #000;margin-left: 100px;position: relative;}
+		#concept .two>a span::before{content: "";display: block;width: 0;height: 0;border: 4px solid;border-top-color: transparent;border-right-color: transparent;border-bottom-color: transparent;border-left-color:inherit;position: absolute;right: -8px;top: -3.5px;}
+		/*end concept*/
+		/*mbmber*/
+		#member{width: 100%;height: 812px;border-top: 1px solid rgba(0,0,0,0);margin-top: -1px;background: url(img/member/1.png)  no-repeat 300px 150px; position: relative;}
+		#member>h3{font-size: 80px;font-weight: 100;letter-spacing: 5px;transform: rotate(90deg);position: absolute;top: 250px;left: -50px;}
+		#member>p{font-size: 14px;letter-spacing: 10px;margin-top: 400px;margin-left: 300px;}
+		#member>a{display: flex;width: 520px;height: 44px;border: 1px solid #000;margin-left: 300px;margin-top: 50px;letter-spacing: 2px;font-size: 12px;font-weight: 600;color: #000;line-height: 44px;text-indent: 2em;align-items: center;}
+		#member>a>span{display: block;height: 1px;width: 70px;background: #000;position: relative;margin-left: 30px;transition: 2s linear;}
+		#member>a>span::before{content: "";display: block;width: 0;height: 0;border: 4px solid;border-top-color:transparent;border-right-color: transparent;border-bottom-color: transparent;border-left-color:inherit;position: absolute;right: -8px;top: -3.5px;}
+		#member>div{width: 368px;height: 551px;position: absolute;right: 0px;top: 100px;}
+		#member>a:hover span{width: 340px;}
+		#member>div>img{width: 183px;height: 183px;float: left;}
+		/*end mbmber*/
+		footer{width: 100%;height: 100px;background: #000;color: #ccc;display: flex;justify-content: center;align-items: center;position: relative;margin-left: -1px;}
+		footer>p{letter-spacing: 3px;font-size: 14px;font-weight: 100;}
+	</style>
+	<script type="text/javascript" src="js/doMove.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			//header
+			var onav = document.getElementById('nav1');
+			var aSpan = onav.getElementsByTagName('span');
+			aSpan[0].style.backgroundPositionY = '-812px';
+			for(var i=0;i<aSpan.length;i++){
+				aSpan[i].onclick = function(){
+					for(var i=0;i<aSpan.length;i++){
+						aSpan[i].style.backgroundPositionY = '0px';
+					}
+					doMove(this,'backgroundPositionY',58,-812);
+				}
+			}
+			//end header
+			//imgTab
+			//imgTab_1
+			var imgLunboBox = document.getElementById('imgLunboBox');
+			var oUl1 = document.getElementById('imgTab1Ul');
+			var oImgTabImg = document.getElementById('imgTabImg');
+			var aLi1 = oUl1.getElementsByTagName('li');
+			var aImgUrl = ['img/imgTab/no1/1.jpg','img/imgTab/no1/2.jpg','img/imgTab/no1/3.jpg','img/imgTab/no1/4.jpg'];
+			var imgTabNum = aLi1.length-1;
+			var timer = null;
+			aImgUrl.reverse();
+			//初始化
+			oImgTabImg.src = aImgUrl[imgTabNum];
+			aLi1[imgTabNum].className = 'active';
+			//轮播
+			function lunbo(){
+				timer = setInterval(function(){
+					imgTabNum--;
+					if(imgTabNum==-1){
+						imgTabNum=aLi1.length-1;
+					}
+					for(let i=0;i<aLi1.length;i++){
+							aLi1[i].className = '';
+					}
+					oImgTabImg.src = aImgUrl[imgTabNum];
+					aLi1[imgTabNum].className = 'active';
+				},1500);
+			}
+			lunbo();
+			imgLunboBox.onmouseover = function(){
+				clearInterval(timer);
+			}
+			imgLunboBox.onmouseout = function(){
+				lunbo();
+			}
+			for(var i=0;i<aLi1.length;i++){
+				aLi1[i].index = i;
+				aLi1[i].onmouseover = function(){
+					for(let i=0;i<aLi1.length;i++){
+						aLi1[i].className = '';
+					}
+					this.className = 'active';
+					oImgTabImg.src = aImgUrl[this.index];
+				}
+			}
+			//end imgTab_1
+			//imgTab_2
+			imgTab('imgTab2Box1_div2','imgTab2ImgBox1');
+			imgTab('imgTab2Box2_div2','imgTab2ImgBox2');
+			imgTab('imgTab2Box3_div2','imgTab2ImgBox3');
+			/*封装啊啊啊啊啊*/
+			function imgTab(obj1,obj2 ){
+				let oTuPianBox = document.getElementById(obj1);
+				let oImgBox = document.getElementById(obj2);
+				let oUl = oTuPianBox.getElementsByTagName('ul')[0];
+				let aLi = oUl.getElementsByTagName('li');
+				for(let i=0;i<aLi.length;i++){
+					aLi[i].index = i;
+					aLi[i].onmouseover = function(){
+						for(let i=0;i<aLi.length;i++){
+							aLi[i].className = '';
+						}
+						this.className = 'xuanzhong';
+						if(this.index == 0){
+							doMove(oImgBox,'top',60,0);
+						}else if(this.index == 1){
+							doMove(oImgBox,'top',60,-436);
+						}else if(this.index == 2){
+							doMove(oImgBox,'top',60,-872);
+						}else if(this.index == 3){
+							doMove(oImgBox,'top',60,-1308);
+						}
+					}
+				}
+			};
+			//end imgTab_2
+			//end imgTab
+			//concept
+			var conImgBox = document.getElementById('tupianBox');
+			var conImg = conImgBox.getElementsByTagName('img')[0];
+			var aBtn4 = conImgBox.getElementsByTagName('div');
+			aBtn4[0].onmouseover = function(){
+				conImg.style.transform='translateY(-40px) translate(-40px)';
+			}
+			aBtn4[0].onmouseout = function(){
+				conImg.style.transform='translateY(40px) translate(40px)';
+			}
+			aBtn4[1].onmouseover = function(){
+				conImg.style.transform='translateY(-40px) translateX(40px)';
+			}
+			aBtn4[1].onmouseout = function(){
+				conImg.style.transform='translateY(40px) translateX(-40px)';
+			}
+			aBtn4[2].onmouseover = function(){
+				conImg.style.transform='translateY(40px) translateX(-40px)';
+			}
+			aBtn4[2].onmouseout = function(){
+				conImg.style.transform='translateY(-40px) translateX(40px)';
+			}
+			aBtn4[3].onmouseover = function(){
+				conImg.style.transform='translateY(40px) translateX(40px)';
+			}
+			aBtn4[3].onmouseout = function(){
+				conImg.style.transform='translateY(-40px) translateX(-40px)';
+			}
+			//xiaci
+			//我司偷懒才这样的 懂我意思把
+			var xiuFuXiaCi = document.getElementById('xiufuxiaci');
+			var xiaCi = document.getElementById('xiaci');
+			xiuFuXiaCi.onmouseover = function(){
+				xiaCi.style.width = '0px';
+			}
+			xiuFuXiaCi.onmouseout = function(){
+				xiaCi.style.width = '420px';
+			}
+			//end concept
+			//member
+			var Gif = document.getElementById('gif');
+			Gif.onmouseover = function(){
+				this.src = 'img/member/people/4.gif';
+			}
+			Gif.onmouseout = function(){
+				this.src = 'img/member/people/4.png';
+			}
+			//end member
+		};
+	</script>
+</head>
+<body>
+	<header>
+		<nav id="nav1">
+			<span>主页</span>
+			<span>观念</span>
+			<span>招聘</span>
+		</nav>
+		<a href="#">Hello World</a>
+	</header>
+	<section id="logoBox">
+		<h1>三 千 私 作@</h1>
+		<div>
+			<div></div>
+			<div></div>
+		</div>
+	</section>
+	<section id="imgTabBox">
+		<section id="imgTab1">
+			<h1>LOOKBOOK</h1>
+			<p>MILLOR Style</p>
+			<p>三千私作@ 作品展示区<br><br>look book进 步 与 你 同 步</p>
+			<div>
+				<div class="jieshao">
+					<h2>N o.1</h2>
+					<p>[ 川 岛 ]</p>
+				</div>
+				<div class="img1" id="imgLunboBox">
+					<img id="imgTabImg">
+					<ol id="imgTab1Ul">
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ol>
+				</div>
+			</div>
+		</section>
+		<section id="imgTab2">
+			<img src="img/imgTab/img/1.png" >
+			<img src="img/imgTab/img/2.png" >
+			<img src="img/imgTab/img/3.png" >
+			<img src="img/imgTab/img/4.png" >
+			<div class="imgTab2Box1">
+				<div>
+					<h3>N o.2</h3>
+					<p>[ 呀 美 子 ]</p>
+					<span>三 千<br><br>&nbsp;私 作 @</span>
+				</div>
+				<div id="imgTab2Box1_div2">
+					<div id="imgTab2ImgBox1">
+						<img src="img/imgTab/no2/1.jpg" >
+						<img src="img/imgTab/no2/2.jpg" >
+						<img src="img/imgTab/no2/3.jpg" >
+						<img src="img/imgTab/no2/4.jpg" >
+					</div>
+					<ul>
+						<li class="xuanzhong"></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+			</div>
+			<div class="imgTab2Box2">
+				<div>
+					<h3>N o.3</h3>
+					<p>[ 雅 衣 子 ]</p>
+					<span>为 什 么<br><br>不 轮 播 ？</span>
+				</div>
+				<div id="imgTab2Box2_div2">
+					<div id="imgTab2ImgBox2">
+						<img src="img/imgTab/no3/1.jpg" >
+						<img src="img/imgTab/no3/2.jpg" >
+						<img src="img/imgTab/no3/3.jpg" >
+						<img src="img/imgTab/no3/4.jpg" >
+					</div>
+					<ul>
+						<li class="xuanzhong"></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+			</div>
+			<div class="imgTab2Box3">
+				<div>
+					<h3>N o.4</h3>
+					<p>[ 素 美 惠 ]</p>
+					<span>粘 贴 复 制<br><br>一 把 嗦</span>
+				</div>
+				<div id="imgTab2Box3_div2">
+					<div id="imgTab2ImgBox3">
+						<img src="img/imgTab/no4/1.jpg" >
+						<img src="img/imgTab/no4/2.jpg" >
+						<img src="img/imgTab/no4/3.jpg" >
+						<img src="img/imgTab/no4/4.jpg" >
+					</div>
+					<ul>
+						<li class="xuanzhong"></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+			</div>
+		</section>
+	</section>
+	<section id="jpns">
+		<h3>P I C K U P<br>Service</h3>
+		<section>
+			<div id="jpnsDiv1">
+				<div class="one">
+					<p>One</p>
+					<span></span>
+					<p>我 阳</p>
+					<img src="img/jpns/2.png" >
+				</div>
+				<div class="two">
+					<img src="img/jpns/img/2.jpg" >
+					<div>
+						<p>一二三忽然一场大雨，没把我浇醒。<br><br>路上走走停停，没你的消息。</p>
+					</div>
+				</div>
+			</div>
+			<div id="jpnsDiv2">
+				<div class="one">
+					<p>Two</p>
+					<span></span>
+					<p>国 川</p>
+					<img src="img/jpns/2.png" >
+				</div>
+				<div class="two">
+					<img src="img/jpns/img/1.jpg" >
+					<div>
+						<p>今天就是中华无敌<br><br>超级爆炸螺旋飞天迷迷迷迷熊猫</p>
+					</div>
+				</div>
+			</div>
+			<div id="jpnsDiv3">
+				<div class="one">
+					<p>Thr</p>
+					<span></span>
+					<p>是 最</p>
+					<img src="img/jpns/2.png" >
+				</div>
+				<div class="two">
+					<img src="img/jpns/img/3.jpg" >
+					<div>
+						<p>早安喵，午安喵，晚安喵<br><br>喵喵喵喵喵喵喵喵喵喵喵喵。</p>
+					</div>
+				</div>
+			</div>
+			<div id="jpnsDiv4">
+				<div class="one">
+					<p>Try</p>
+					<span></span>
+					<p>帅 气</p>
+					<img src="img/jpns/2.png" >
+				</div>
+				<div class="two">
+					<img src="img/jpns/img/4.jpg" >
+					<div>
+						<p>快乐池塘，有一群小青蛙。<br><br>呱呱呱，呱呱呱呱呱呱。</p>
+					</div>
+				</div>
+			</div>
+			<div id="jpnsDiv5">
+				<div class="one">
+					<p>Cur</p>
+					<span></span>
+					<p>的 对</p>
+					<img src="img/jpns/2.png" >
+				</div>
+				<div class="two">
+					<img src="img/jpns/img/5.jpg" >
+					<div>
+						<p>不敢回看，<br><br>左顾右盼不自然的暗自喜欢。</p>
+					</div>
+				</div>
+			</div>
+			<div id="jpnsDiv6">
+				<div class="one">
+					<p>o'ip</p>
+					<span></span>
+					<p>吧 ！</p>
+					<img src="img/jpns/2.png" >
+				</div>
+				<div class="two">
+					<img src="img/jpns/img/6.jpg" >
+					<div>
+						<p>窗外雨都停了。<br><br>屋里灯还黑着。</p>
+					</div>
+				</div>
+			</div>
+		</section>
+	</section>
+	<section id="concept">
+		<img src="img/jpns/1.png" >
+		<div class="one" id="tupianBox">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<img src="img/concept/2.png" >
+		</div>
+		<div class="two">
+			<img src="img/concept/1.png" >
+			<h4>MILLOR Concept</h4>
+			<p>三 千 私 作 @</p>
+			<p>爱人乘着船<br><br><br>扬帆，准时的离岸<br><br><br>空房间的她，害怕,眼里闪泪光<br><br><br>好难应付啊，爆炸，人问起的尴尬</p>
+			<span id="xiaci"></span>
+			<a id="xiufuxiaci" href="javascript:;">我也不知道为什么就是想写个A标签<span></span></a>
+		</div>
+	</section>
+	<section id="member">
+		<h3>New Member</h3>
+		<p>不会因为小事就受挫，你就和我在一起<br><br>在周末验票口的另一端，有着银河一等星的光辉<br><br>玩笑话什么的的就无视吧<br><br>人嘛就是墙头草 没办法的<br><br>在新的那扇门前，一个人也不会孤单吧<br><br>会想着干脆就死了算了之类的吗</p>
+		<a href="javascript:;">这是一个按钮<span></span></a>
+		<div>
+			<img src="img/member/people/1.jpg" >
+			<img src="img/member/people/2.jpg" >
+			<img src="img/member/people/3.jpg" >
+			<img src="img/member/people/5.jpg" >
+			<img id="gif" src="img/member/people/4.png" >
+			<img src="img/member/people/6.jpg" >
+		</div>
+	</section>
+	<footer>
+		<p>没有为什么这就是页脚，不是我不会做，而是我不乐意做<br><br>我现在要去看电影，听歌，睡觉，打游戏，怀疑人生，周末愉快 seeYou</p>
+	</footer>
+</body>
+</html>

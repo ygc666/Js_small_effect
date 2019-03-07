@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>留言板</title>
+	<style type="text/css">
+		#body1{width: 500px;height: auto;margin:0 auto;}
+		#list{width: 480px;height: auto;border:1px solid #ccc;padding:5px 10px;}
+		li{list-style: none;margin: 10px 0;background: #ccc;word-wrap : break-word;}
+		textarea{width: 496px;height: 100px;}
+		#btn{width: 504px;height: 40px;}
+	</style>
+</head>
+<body>
+	<div id="body1">
+		<h3>留言内容：</h3>
+		<hr>
+		<ul id="list">
+			<em id="em1">还没有任何留言……</em>
+			<!--<li style="background: #ccc;"><em>1. </em>1111</li>-->
+		</ul>
+		<textarea id="text"></textarea>
+		<input id="btn" value="发表留言" type="button">
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	var ul = document.getElementById('list');
+	var em1 = document.getElementById('em1');
+	var btn = document.getElementById('btn');
+	var text = document.getElementById('text');
+	//序列号
+	var li = ul.getElementsByTagName('li');
+	function listNum(){
+		for(var i=0;i<li.length;i++){
+			li[i].children[0].innerHTML = (i+1)+'. ';
+		}
+	}
+	//创建删除
+	function createShanChu(){
+		for(var i=0;i<li.length;i++){
+			//为每个li加上删除,点击留言执行函数(执行循环)所以先删除节点
+			//如果有节点就删除
+			if(li[i].children[1]){
+				li[i].removeChild(li[i].children[1]);
+			}
+			var del = document.createElement('span');
+			del.innerHTML = '<a href="javascript:;" >删除</a><span style="color:red;">第'+(i+1)+'条</span>';
+			del.style.float = 'right';
+			del.style.display = 'none';//先隐藏mouseover的时候显示
+			li[i].appendChild(del);
+		}
+	}
+	//发表留言
+	btn.onclick = function(){
+		if(text.value==''){
+			alert('请输入内容');
+		}else{
+			em1.style.display = 'none';
+			var li = document.createElement('li');
+			li.innerHTML = '<em></em>'+text.value;
+			ul.appendChild(li);
+			text.value = '';
+		}
+		createShanChu();
+		//这个li为什么不是创建的元素li呢好奇怪啊
+		//自己  “艾斯比”  方法listNumber在外面呢！！
+		over();
+		out();
+		shanchuElem();
+		listNum();
+	};
+	//留言移入
+	function over(){
+		for(var i=0;i<li.length;i++){
+			li[i].onmouseover = function(){
+				this.style.background = 'yellow';
+				this.children[1].style.display = 'block';
+			}
+		}
+	}
+	//留言移出
+	function out(){
+		for(var i=0;i<li.length;i++){
+			li[i].onmouseout = function(){
+				this.style.background = '#ccc';
+				this.children[1].style.display = 'none';
+			}
+		}
+	}
+	//删除元素
+	var a = ul.getElementsByTagName('a');
+	function shanchuElem(){
+		for(var i=0;i<a.length;i++){
+			a[i].onclick = function(){
+				ul.removeChild(this.parentNode.parentNode);
+				if(ul.children.length==1){
+					em1.style.display = 'block';
+				}
+				listNum();
+			}
+		}
+	}
+</script>

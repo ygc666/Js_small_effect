@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>百叶窗</title>
+	<style>
+		*{padding: 0;margin: 0;}
+		li{list-style: none;}
+		#list{width: 250px;height: auto;border: 1px solid #000;margin: 10px}
+		#list li{height: 30px;line-height: 30px;border-bottom: 1px dashed #000;overflow: hidden;position: relative;background:rgba(95,127,212,0.5);}
+		#list li:last-child{border-bottom: none;}
+		#list li div{position: absolute;top: 0px;left: 40px;}
+	</style>
+	<script src="move.js"></script>
+	<script>
+	window.onload = function(){
+		var oUl = document.getElementById('list');
+		
+		yanchi(oUl);
+		
+		function yanchi(obj){
+			var aDiv = obj.getElementsByTagName('div');
+			var num = 0;
+			var timer = null;
+			var onOff = true;
+			setInterval(function(){
+				xiaoguo();
+			},3000);
+			
+			function xiaoguo(){
+				timer = setInterval(function(){
+					if(num==aDiv.length){
+						clearInterval(timer);
+						num = 0;
+						onOff = !onOff;//我也不知道他是true还是false反正给他取反就好了
+					}else if(onOff){
+						startMove(aDiv[num],{top:-30});
+						num++;
+					}else{
+						startMove(aDiv[num],{top:0});
+						num++;
+					}
+				},200);
+			}
+		}
+		
+	};
+	</script>
+</head>
+<body>
+	<ul id="list">
+		<li>
+			<div>
+				<p>窗外雨都停了</p>
+				<p>屋里灯还黑着</p>
+			</div>
+		</li>
+		<li>
+			<div>
+				<p>数着你的冷漠</p>
+				<p>把玩着寂寞</p>
+			</div>
+		</li>
+		<li>
+			<div>
+				<p>电话还没播</p>
+				<p>已经口渴</p>
+			</div>
+		</li>
+		<li>
+			<div>
+				<p>为你熬的夜都冷了</p>
+				<p>数的羊都跑了</p>
+			</div>
+		</li>
+		<li>
+			<div>
+				<p>一个两个</p>
+				<p>嘲笑我</p>
+			</div>
+		</li>
+	</ul>
+</body>
+</html>

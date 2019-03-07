@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>btn</title>
+    <style>
+        *{padding: 0;margin: 0;}
+        #btn{
+            width: 152px;
+            height: 50px;
+            border: 2px solid #ccc;
+            margin: 50px auto;
+            position: relative;
+        }
+        /*   btn>* btn下子元素加上定位    如果是这样: btn *   子 孙 元素加上定位*/
+        #btn>*{
+            position: absolute;
+        }
+        #top{
+            width: 156px;
+            height: 2px;
+            left: -2px;
+            top: -2px;
+            /*我用的一个父级div来承载子级 子级在自动居中【margin: 0 auto】,才能达到 hover 从中间向两边展开的效果;*/
+            /*background:orange;*//*解除注释可以看到*/
+        }
+        #top div{
+            width: 0px;
+            height: 2px;
+            background: red;
+            margin: 0 auto;
+            transition: .4s;
+        }
+        #left,#right{
+            width: 2px;
+            height: 0;
+            /*height:50px;*//* 解除看原理 hover只是改变了它的高度【一个动画效果而已】*/
+            background: red;
+            top: 0px;
+            /*transition加给元素,离开时也有动画效果*/
+            transition: .2s;
+        }
+        #left{
+            left: -2px;
+        }
+        #right{
+            right: -2px;
+        }
+        /*bottom也是同理让它下面的div根据它定位*/
+        #bottom{
+            width: 156px;
+            height: 2px;
+            /*background: orange;*/
+            left: -2px;
+            bottom: -2px;
+        }
+        #bottom div{
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: red;
+            transition: .2s;
+        }
+        /*css3的伪类选择器*/
+        #bottom div:nth-child(1){
+            left: 0;
+        }
+        #bottom div:nth-child(2){
+            right: 0;
+        }
+
+        /* 这种写法只有当 #left or #right是 #btn的子节点才可以 */
+        #btn:hover #left,#btn:hover #right{
+            height: 50px;
+        }
+        #btn:hover #top>div{
+            width: 156px;
+        }
+        #btn:hover #bottom>div{
+            width: 78px;
+        }
+        #btn:hover #textBox{
+            transition: .2s;
+            color: #fff;
+            background: red;
+        }
+        #btn:hover #line>div{
+            transition: .3s;
+            height: 100px;
+            background: red;
+        }
+        #textBox{
+            background: beige;
+            left: 2px;
+            top:2px;
+        }
+        #textBox div{
+            width: 148px;
+            height: 46px;
+            text-align: center;
+            font-size: 12px;
+            letter-spacing: 2px;/*字间距*/
+            line-height: 46px;
+        }
+        #line{
+            width: 2px;
+            height: 100px;
+            background: #ccc;
+            left: 74.5px;
+            top: 100%;
+            z-index: -1;/*让它的层级降低一级 不懂可以加上背景色然后删了试试 */
+            /*background: orange;*/
+        }
+        #line div{
+            width: 2px;
+            height: 0;
+        }
+    </style>
+</head>
+<body>
+    <!--线条都是模拟出来的通过 position(定位) -->
+    <div id="btn">
+        <div id="top">
+            <div></div>
+        </div>
+        <div id="left"></div>
+        <div id="right"></div>
+        <div id="bottom">
+            <div></div>
+            <div></div>
+        </div>
+        <div id="textBox">
+            <div>YOUNG YANG</div>
+        </div>
+        <div id="line">
+            <div></div>
+        </div>
+    </div>
+    <script src="自己的库.js"></script>
+    <script>
+        var btn = document.querySelector('#btn');
+        var left = document.querySelector('#left');
+        var right = document.querySelector('#right');
+        
+        /*
+        *       JavaScript的我就不做了,要去玩游戏了,周末愉快
+        */
+    </script>
+</body>
+</html>

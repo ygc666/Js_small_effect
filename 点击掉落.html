@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>点击掉落</title>
+	<style type="text/css">
+	</style>
+</head>
+<body>
+</body>
+</html>
+<script type="text/javascript">
+	function div(a){
+		this.width = 50;
+		this.height = 50;
+		this.position = 'absolute';
+		this.backgroundColor = 'yellowgreen';
+		this.top = 0;
+		this.transition = '.8s';
+		this.show = function(){
+			for(var i=0;i<a;i++){
+				var div = document.createElement('div');
+				div.style.width = this.width + 'px';
+				div.style.height = this.height + 'px';
+				div.style.position = this.position;
+				div.style.backgroundColor = this.backgroundColor;
+				div.style.transition = this.transition;
+				div.style.top = this.top;
+				div.style.left = 10+i*60 + 'px';
+				document.body.appendChild(div);
+			}	
+		}
+	}
+	var div = new div(10);
+	div.show();
+	//点击掉落
+	var aA = document.getElementsByTagName('div');
+	var aPrev = [];
+	var aNext = [];
+	for(var i=0;i<aA.length;i++){
+		aA[i].onclick = function(){
+			var previous = this.previousElementSibling;
+			var next = this.nextElementSibling;
+			//this上面的所有元素节点
+			while(previous){
+				aPrev.push(previous);
+				previous = previous.previousElementSibling;
+			}
+			//this下面的所有元素节点
+			while(next){
+				aNext.push(next);
+				next = next.nextElementSibling;
+			}
+			var a = 0;
+			var b = 0;
+			this.style.top = '150px';
+			//前面的elem掉
+			var prevTimer = setInterval(function(){
+				aPrev[a].style.top = '150px';
+				a++;
+				if(a>=aPrev.length-1){
+					clearInterval(prevTimer);
+				}
+			},200);
+			//后面的elem掉
+			var nextTimer = setInterval(function(){
+				if(aNext[b]){//如果元素存在	？为什么prev没有这个问题
+					aNext[b].style.top = '150px';
+					b++;
+					if(b>=aNext.length){
+						clearInterval(nextTimer);
+					}
+				}
+			},200);
+		}
+	}
+</script>

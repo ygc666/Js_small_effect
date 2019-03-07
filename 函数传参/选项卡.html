@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>选项卡</title>
+	<style type="text/css">
+		*{padding: 0;margin: 0;}
+		#box{background: green;width: 300px;height: auto;}
+		nav{height: 40px;border-bottom: 1px solid yellowgreen;position: relative;}
+		#btnBox{width:  94px;height: 20px;font-size: 0;display: flex;position: absolute;right: 16px;bottom: 1px;}
+		#btnBox a{display: block; width: 30px;height: 20px;background: #fff;border:1px solid yellowgreen;font-size: 12px;text-align: center;line-height: 20px;text-decoration: none;color: #000;background: green;}
+		#btnBox .active{border-bottom: 1px solid #fff;font-weight: 500;background: #fff;}
+		h3{font-weight: 500;font-size: 18px;}
+		.list{width: 300px;display: none;}
+		.list li{height: 30px;border-bottom: 1px dotted yellowgreen;line-height: 30px;color: #fff;text-indent: 1em;}
+		.list .active{line-height: 50px;height: 50px;background: orangered;}
+	</style>
+	<script type="text/javascript">
+
+		window.onload = function (){
+			var aBox = document.getElementById('btnBox');
+			var a = aBox.getElementsByTagName('a');
+			var aUl = document.getElementsByTagName('ul');
+			//初始化
+			a[0].className = 'active';
+			aUl[0].style.display = 'block';
+			for(var i=0;i<a.length;i++){
+				a[i].index = i;
+				a[i].onclick = function(){
+					for(var i=0;i<aUl.length;i++){
+						aUl[i].style.display = 'none';
+					}
+					for(var i=0;i<a.length;i++){
+						a[i].className = '';
+					}
+					this.className = 'active';
+					aUl[this.index].style.display = 'block';
+				}
+			}
+			over('list1');
+			over('list2');
+			over('list3');
+		}
+		function over(id){
+			var oUl = document.getElementById(id);
+			var aLi = oUl.getElementsByTagName('li');
+			aLi[0].className = 'active';
+			//点击事件
+			for(var i=0;i<aLi.length;i++){
+				aLi[i].onmouseover = function(){
+					for(var i = 0;i<aLi.length;i++){
+						aLi[i].className = '';
+					}
+					this.className = 'active';
+				};
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<nav>
+			<h3>观看排行榜</h3>
+			<div id="btnBox">
+				<a href="javascript:;" style="border-right: none;">每日</a>
+				<a href="javascript:;" style="border-right: none;">每周</a>
+				<a href="javascript:;">全部</a>
+			</div>
+		</nav>
+		<ul id="list1" class="list">
+			<li>内容填充内容填充内容填充1</li>
+			<li>内容填充内容填充内容填充1</li>
+			<li>内容填充内容填充内容填充1</li>
+			<li>内容填充内容填充内容填充1</li>
+			<li>内容填充内容填充内容填充1</li>
+			<li>内容填充内容填充内容填充1</li>
+			<li>内容填充内容填充内容填充1</li>
+			<li>内容填充内容填充内容填充1</li>
+			<li>内容填充内容填充内容填充1</li>
+		</ul>
+		<ul id="list2" class="list">
+			<li>内容填充内容填充内容填充2</li>
+			<li>内容填充内容填充内容填充2</li>
+			<li>内容填充内容填充内容填充2</li>
+			<li>内容填充内容填充内容填充2</li>
+			<li>内容填充内容填充内容填充2</li>
+			<li>内容填充内容填充内容填充2</li>
+			<li>内容填充内容填充内容填充2</li>
+			<li>内容填充内容填充内容填充2</li>
+			<li>内容填充内容填充内容填充2</li>
+		</ul>
+		<ul id="list3" class="list">
+			<li>内容填充内容填充内容填充3</li>
+			<li>内容填充内容填充内容填充3</li>
+			<li>内容填充内容填充内容填充3</li>
+			<li>内容填充内容填充内容填充3</li>
+			<li>内容填充内容填充内容填充3</li>
+			<li>内容填充内容填充内容填充3</li>
+			<li>内容填充内容填充内容填充3</li>
+			<li>内容填充内容填充内容填充3</li>
+			<li>内容填充内容填充内容填充3</li>
+		</ul>
+	</div>
+</body>
+</html>
